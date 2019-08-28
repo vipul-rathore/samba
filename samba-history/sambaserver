@@ -1,0 +1,798 @@
+[root@localhost ~]# nmcli c
+NAME    UUID                                  TYPE            DEVICE 
+server  6fa845a3-1268-4ae6-8084-4b673933507a  802-3-ethernet  ens33  
+virbr0  3795a1bb-a201-4c34-b604-04692286eecb  bridge          virbr0 
+[root@localhost ~]# nmcli connection delete server 
+Connection 'server' (6fa845a3-1268-4ae6-8084-4b673933507a) successfully deleted.
+[root@localhost ~]# 
+[root@localhost ~]# nmcli connection add type ethernet con-name server ifname ens33 
+Connection 'server' (c37219ea-4758-49a6-94ab-2bdc728784e3) successfully added.
+[root@localhost ~]# ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 1000
+    link/ether 00:0c:29:fe:b6:77 brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::87d1:21a4:7630:67cb/64 scope link 
+       valid_lft forever preferred_lft forever
+3: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+       valid_lft forever preferred_lft forever
+4: virbr0-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master virbr0 state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+[root@localhost ~]# nmcli c
+NAME    UUID                                  TYPE            DEVICE 
+server  c37219ea-4758-49a6-94ab-2bdc728784e3  802-3-ethernet  ens33  
+virbr0  3795a1bb-a201-4c34-b604-04692286eecb  bridge          virbr0 
+[root@localhost ~]# ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 1000
+    link/ether 00:0c:29:fe:b6:77 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.131/24 brd 192.168.0.255 scope global dynamic ens33
+       valid_lft 86395sec preferred_lft 86395sec
+    inet6 fe80::87d1:21a4:7630:67cb/64 scope link 
+       valid_lft forever preferred_lft forever
+3: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+       valid_lft forever preferred_lft forever
+4: virbr0-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master virbr0 state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+[root@localhost ~]# 
+[root@localhost ~]# ping www.google.com
+PING www.google.com (172.217.160.196) 56(84) bytes of data.
+64 bytes from bom07s16-in-f4.1e100.net (172.217.160.196): icmp_seq=1 ttl=55 time=41.5 ms
+64 bytes from bom07s16-in-f4.1e100.net (172.217.160.196): icmp_seq=2 ttl=55 time=42.6 ms
+^C
+--- www.google.com ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 41.550/42.124/42.698/0.574 ms
+[root@localhost ~]# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[root@localhost ~]# ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 1000
+    link/ether 00:0c:29:fe:b6:77 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.131/24 brd 192.168.0.255 scope global dynamic ens33
+       valid_lft 86363sec preferred_lft 86363sec
+    inet6 fe80::87d1:21a4:7630:67cb/64 scope link 
+       valid_lft forever preferred_lft forever
+3: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+       valid_lft forever preferred_lft forever
+4: virbr0-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master virbr0 state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+[root@localhost ~]# ping 192.168.0.124
+PING 192.168.0.124 (192.168.0.124) 56(84) bytes of data.
+64 bytes from 192.168.0.124: icmp_seq=1 ttl=64 time=0.437 ms
+^C
+--- 192.168.0.124 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.437/0.437/0.437/0.000 ms
+[root@localhost ~]# 
+[root@localhost ~]# hostnamectl set-hostname server0.example.com
+e[root@localhost ~]# exec bash
+[root@server0 ~]# hostnamectl
+   Static hostname: server0.example.com
+         Icon name: computer-vm
+           Chassis: vm
+        Machine ID: 924ed33ff48a4734b4631b141c5a6fb6
+           Boot ID: 532e655fd20046cea972cf3d90fcc158
+    Virtualization: vmware
+  Operating System: CentOS Linux 7 (Core)
+       CPE OS Name: cpe:/o:centos:centos:7
+            Kernel: Linux 3.10.0-693.el7.x86_64
+      Architecture: x86-64
+[root@server0 ~]# 
+[root@server0 ~]# 
+
+
+
+
+
+
+
+
+
+
+
+
+[root@server0 ~]# ping desktop0
+ping: desktop0: Name or service not known
+^C
+[root@server0 ~]# ping desktop0.example.com
+PING desktop0.example.com (172.25.0.10) 56(84) bytes of data.
+^C
+--- desktop0.example.com ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+[root@server0 ~]# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[root@server0 ~]# lsblk
+NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda               8:0    0   40G  0 disk 
+├─sda1            8:1    0    1G  0 part /boot
+└─sda2            8:2    0   39G  0 part 
+  ├─centos-root 253:0    0   35G  0 lvm  /
+  └─centos-swap 253:1    0    4G  0 lvm  [SWAP]
+sdb               8:16   0   40G  0 disk 
+sr0              11:0    1  4.2G  0 rom  /mnt/rhel
+[root@server0 ~]# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[root@server0 ~]# yum repolist all
+Loaded plugins: fastestmirror, langpacks
+Repository 'rhel.repo' is missing name in configuration, using id
+Loading mirror speeds from cached hostfile
+repo id                                       repo name                                    status
+!rhel.repo                                    rhel.repo                                    enabled: 3,894
+repolist: 3,894
+[root@server0 ~]# vim /etc/yum.repos.d/rhel.repo 
+[root@server0 ~]# lsblk
+NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda               8:0    0   40G  0 disk 
+├─sda1            8:1    0    1G  0 part /boot
+└─sda2            8:2    0   39G  0 part 
+  ├─centos-root 253:0    0   35G  0 lvm  /
+  └─centos-swap 253:1    0    4G  0 lvm  [SWAP]
+sdb               8:16   0   40G  0 disk 
+sr0              11:0    1  4.2G  0 rom  /mnt/rhel
+[root@server0 ~]# yum clean all
+Loaded plugins: fastestmirror, langpacks
+Repository 'rhel.repo' is missing name in configuration, using id
+Cleaning repos: rhel.repo
+Cleaning up everything
+Maybe you want: rm -rf /var/cache/yum, to also free up space taken by orphaned data from disabled or removed repos
+Cleaning up list of fastest mirrors
+[root@server0 ~]# yum repolist all
+
+[root@server0 ~]# yum repolist all
+Loaded plugins: fastestmirror, langpacks
+Repository 'rhel.repo' is missing name in configuration, using id
+rhel.repo                                                                         | 3.6 kB  00:00:00     
+(1/2): rhel.repo/group_gz                                                         | 156 kB  00:00:00     
+(2/2): rhel.repo/primary_db                                                       | 3.1 MB  00:00:00     
+Determining fastest mirrors
+repo id                                      repo name                                     status
+rhel.repo                                    rhel.repo                                     enabled: 3,894
+repolist: 3,894
+[root@server0 ~]# yum install samba* -y
+Loaded plugins: fastestmirror, langpacks
+Repository 'rhel.repo' is missing name in configuration, using id
+Loading mirror speeds from cached hostfile
+Package samba-client-libs-4.6.2-8.el7.x86_64 already installed and latest version
+Package samba-common-4.6.2-8.el7.noarch already installed and latest version
+Resolving Dependencies
+--> Running transaction check
+---> Package samba.x86_64 0:4.6.2-8.el7 will be installed
+---> Package samba-client.x86_64 0:4.6.2-8.el7 will be installed
+---> Package samba-common-libs.x86_64 0:4.6.2-8.el7 will be installed
+---> Package samba-common-tools.x86_64 0:4.6.2-8.el7 will be installed
+---> Package samba-krb5-printing.x86_64 0:4.6.2-8.el7 will be installed
+---> Package samba-libs.x86_64 0:4.6.2-8.el7 will be installed
+--> Processing Dependency: libpytalloc-util.so.2(PYTALLOC_UTIL_2.1.9)(64bit) for package: samba-libs-4.6.2-8.el7.x86_64
+--> Processing Dependency: libpytalloc-util.so.2(PYTALLOC_UTIL_2.1.6)(64bit) for package: samba-libs-4.6.2-8.el7.x86_64
+--> Processing Dependency: libpytalloc-util.so.2(PYTALLOC_UTIL_2.0.6)(64bit) for package: samba-libs-4.6.2-8.el7.x86_64
+--> Processing Dependency: libpytalloc-util.so.2()(64bit) for package: samba-libs-4.6.2-8.el7.x86_64
+---> Package samba-python.x86_64 0:4.6.2-8.el7 will be installed
+--> Processing Dependency: python-tevent for package: samba-python-4.6.2-8.el7.x86_64
+--> Processing Dependency: python-tdb for package: samba-python-4.6.2-8.el7.x86_64
+--> Processing Dependency: pyldb for package: samba-python-4.6.2-8.el7.x86_64
+--> Processing Dependency: libpyldb-util.so.1(PYLDB_UTIL_1.1.2)(64bit) for package: samba-python-4.6.2-8.el7.x86_64
+--> Processing Dependency: libpyldb-util.so.1()(64bit) for package: samba-python-4.6.2-8.el7.x86_64
+---> Package samba-winbind.x86_64 0:4.6.2-8.el7 will be installed
+---> Package samba-winbind-modules.x86_64 0:4.6.2-8.el7 will be installed
+--> Running transaction check
+---> Package pyldb.x86_64 0:1.1.29-1.el7 will be installed
+---> Package pytalloc.x86_64 0:2.1.9-1.el7 will be installed
+---> Package python-tdb.x86_64 0:1.3.12-2.el7 will be installed
+---> Package python-tevent.x86_64 0:0.9.31-1.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=========================================================================================================
+ Package                          Arch              Version                   Repository            Size
+=========================================================================================================
+Installing:
+ samba                            x86_64            4.6.2-8.el7               rhel.repo            633 k
+ samba-client                     x86_64            4.6.2-8.el7               rhel.repo            597 k
+ samba-common-libs                x86_64            4.6.2-8.el7               rhel.repo            164 k
+ samba-common-tools               x86_64            4.6.2-8.el7               rhel.repo            456 k
+ samba-krb5-printing              x86_64            4.6.2-8.el7               rhel.repo             86 k
+ samba-libs                       x86_64            4.6.2-8.el7               rhel.repo            264 k
+ samba-python                     x86_64            4.6.2-8.el7               rhel.repo            2.8 M
+ samba-winbind                    x86_64            4.6.2-8.el7               rhel.repo            516 k
+ samba-winbind-modules            x86_64            4.6.2-8.el7               rhel.repo            111 k
+Installing for dependencies:
+ pyldb                            x86_64            1.1.29-1.el7              rhel.repo             44 k
+ pytalloc                         x86_64            2.1.9-1.el7               rhel.repo             16 k
+ python-tdb                       x86_64            1.3.12-2.el7              rhel.repo             19 k
+ python-tevent                    x86_64            0.9.31-1.el7              rhel.repo             17 k
+
+Transaction Summary
+=========================================================================================================
+Install  9 Packages (+4 Dependent packages)
+
+Total download size: 5.7 M
+Installed size: 25 M
+Downloading packages:
+---------------------------------------------------------------------------------------------------------
+Total                                                                    2.8 MB/s | 5.7 MB  00:00:02     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : samba-common-libs-4.6.2-8.el7.x86_64                                                 1/13 
+  Installing : pytalloc-2.1.9-1.el7.x86_64                                                          2/13 
+  Installing : samba-libs-4.6.2-8.el7.x86_64                                                        3/13 
+  Installing : samba-common-tools-4.6.2-8.el7.x86_64                                                4/13 
+  Installing : python-tdb-1.3.12-2.el7.x86_64                                                       5/13 
+  Installing : pyldb-1.1.29-1.el7.x86_64                                                            6/13 
+  Installing : samba-4.6.2-8.el7.x86_64                                                             7/13 
+  Installing : samba-winbind-modules-4.6.2-8.el7.x86_64                                             8/13 
+  Installing : samba-client-4.6.2-8.el7.x86_64                                                      9/13 
+  Installing : python-tevent-0.9.31-1.el7.x86_64                                                   10/13 
+  Installing : samba-python-4.6.2-8.el7.x86_64                                                     11/13 
+  Installing : samba-krb5-printing-4.6.2-8.el7.x86_64                                              12/13 
+  Installing : samba-winbind-4.6.2-8.el7.x86_64                                                    13/13 
+  Verifying  : python-tdb-1.3.12-2.el7.x86_64                                                       1/13 
+  Verifying  : pytalloc-2.1.9-1.el7.x86_64                                                          2/13 
+  Verifying  : samba-common-tools-4.6.2-8.el7.x86_64                                                3/13 
+  Verifying  : samba-winbind-modules-4.6.2-8.el7.x86_64                                             4/13 
+  Verifying  : python-tevent-0.9.31-1.el7.x86_64                                                    5/13 
+  Verifying  : samba-winbind-4.6.2-8.el7.x86_64                                                     6/13 
+  Verifying  : samba-common-libs-4.6.2-8.el7.x86_64                                                 7/13 
+  Verifying  : pyldb-1.1.29-1.el7.x86_64                                                            8/13 
+  Verifying  : samba-client-4.6.2-8.el7.x86_64                                                      9/13 
+  Verifying  : samba-4.6.2-8.el7.x86_64                                                            10/13 
+  Verifying  : samba-python-4.6.2-8.el7.x86_64                                                     11/13 
+  Verifying  : samba-libs-4.6.2-8.el7.x86_64                                                       12/13 
+  Verifying  : samba-krb5-printing-4.6.2-8.el7.x86_64                                              13/13 
+
+Installed:
+  samba.x86_64 0:4.6.2-8.el7                           samba-client.x86_64 0:4.6.2-8.el7                
+  samba-common-libs.x86_64 0:4.6.2-8.el7               samba-common-tools.x86_64 0:4.6.2-8.el7          
+  samba-krb5-printing.x86_64 0:4.6.2-8.el7             samba-libs.x86_64 0:4.6.2-8.el7                  
+  samba-python.x86_64 0:4.6.2-8.el7                    samba-winbind.x86_64 0:4.6.2-8.el7               
+  samba-winbind-modules.x86_64 0:4.6.2-8.el7          
+
+Dependency Installed:
+  pyldb.x86_64 0:1.1.29-1.el7          pytalloc.x86_64 0:2.1.9-1.el7  python-tdb.x86_64 0:1.3.12-2.el7 
+  python-tevent.x86_64 0:0.9.31-1.el7 
+
+Complete!
+[root@server0 ~]# 
+[root@server0 ~]# mkdir -p /private/protect
+[root@server0 ~]# useradd kushal
+[root@server0 ~]# useradd sachin
+[root@server0 ~]# id kushal
+uid=1003(kushal) gid=1004(kushal) groups=1004(kushal)
+[root@server0 ~]# id sachin
+uid=1004(sachin) gid=1005(sachin) groups=1005(sachin)
+[root@server0 ~]# smbpasswd -a  kushal
+New SMB password:
+Retype new SMB password:
+Added user kushal.
+[root@server0 ~]# smbpasswd -e  kushal
+Enabled user kushal.
+[root@server0 ~]# smbpasswd -a  sachin
+New SMB password:
+Retype new SMB password:
+Added user sachin.
+[root@server0 ~]# smbpasswd -e  sachin
+Enabled user sachin.
+[root@server0 ~]# pdbedit -L
+kushal:1003:
+sachin:1004:
+[root@server0 ~]# setfacl -m u:kushal:rwx /private/protect/
+[root@server0 ~]# setfacl -m u:sachin:r-x /private/protect/
+[root@server0 ~]# 
+[root@server0 ~]# vim /etc/samba/smb.conf
+[root@server0 ~]# rpm -qc samba
+/etc/openldap/schema/samba.schema
+/etc/pam.d/samba
+[root@server0 ~]# rpm -qc samba-client
+[root@server0 ~]# rpm -qc samba
+/etc/openldap/schema/samba.schema
+/etc/pam.d/samba
+[root@server0 ~]# vim /etc/samba/smb.conf
+[root@server0 ~]# testparm -L
+Load smb config files from /etc/samba/smb.conf
+rlimit_max: increasing rlimit_max (1024) to minimum Windows limit (16384)
+Processing section "[homes]"
+Processing section "[printers]"
+Processing section "[print$]"
+Processing section "[grras]"
+Loaded services file OK.
+Server role: ROLE_STANDALONE
+
+Press enter to see a dump of your service definitions
+
+# Global parameters
+[global]
+	workgroup = SAMBA
+	printcap name = cups
+	security = USER
+	idmap config * : backend = tdb
+	cups options = raw
+
+
+[homes]
+	comment = Home Directories
+	browseable = No
+	inherit acls = Yes
+	read only = No
+	valid users = %S %D%w%S
+
+
+[printers]
+	comment = All Printers
+	path = /var/tmp
+	browseable = No
+	printable = Yes
+	create mask = 0600
+
+
+[print$]
+	comment = Printer Drivers
+	path = /var/lib/samba/drivers
+	create mask = 0664
+	directory mask = 0775
+	write list = root
+
+
+[grras]
+	path = /private/protect
+	hosts allow = 192.168.0.0/24
+	valid users = kushal sachin
+	write list = kushal
+[root@server0 ~]# vim /etc/samba/smb.conf
+[root@server0 ~]# testparm -L
+Load smb config files from /etc/samba/smb.conf
+rlimit_max: increasing rlimit_max (1024) to minimum Windows limit (16384)
+Processing section "[homes]"
+Processing section "[printers]"
+Processing section "[print$]"
+Processing section "[grras]"
+Unknown parameter encountered: "hots allow"
+Ignoring unknown parameter "hots allow"
+Loaded services file OK.
+Server role: ROLE_STANDALONE
+
+Press enter to see a dump of your service definitions
+
+# Global parameters
+[global]
+	workgroup = SAMBA
+	printcap name = cups
+	security = USER
+	idmap config * : backend = tdb
+	cups options = raw
+
+
+[homes]
+	comment = Home Directories
+	browseable = No
+	inherit acls = Yes
+	read only = No
+	valid users = %S %D%w%S
+
+
+[printers]
+	comment = All Printers
+	path = /var/tmp
+	browseable = No
+	printable = Yes
+	create mask = 0600
+
+
+[print$]
+	comment = Printer Drivers
+	path = /var/lib/samba/drivers
+	create mask = 0664
+	directory mask = 0775
+	write list = root
+
+
+[grras]
+	path = /private/protect
+	valid users = kushal sachin
+	write list = kushal
+[root@server0 ~]# vim /etc/samba/smb.conf
+[root@server0 ~]# testparm -L
+Load smb config files from /etc/samba/smb.conf
+rlimit_max: increasing rlimit_max (1024) to minimum Windows limit (16384)
+Processing section "[homes]"
+Processing section "[printers]"
+Processing section "[print$]"
+Processing section "[grras]"
+Loaded services file OK.
+Server role: ROLE_STANDALONE
+
+Press enter to see a dump of your service definitions
+
+# Global parameters
+[global]
+	workgroup = SAMBA
+	printcap name = cups
+	security = USER
+	idmap config * : backend = tdb
+	cups options = raw
+
+
+[homes]
+	comment = Home Directories
+	browseable = No
+	inherit acls = Yes
+	read only = No
+	valid users = %S %D%w%S
+
+
+[printers]
+	comment = All Printers
+	path = /var/tmp
+	browseable = No
+	printable = Yes
+	create mask = 0600
+
+
+[print$]
+	comment = Printer Drivers
+	path = /var/lib/samba/drivers
+	create mask = 0664
+	directory mask = 0775
+	write list = root
+
+
+[grras]
+	path = /private/protect
+	hosts allow = 192.168.0.0/24
+	valid users = kushal sachin
+	write list = kushal
+[root@server0 ~]# man smb.conf
+[root@server0 ~]# 
+[root@server0 ~]# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[root@server0 ~]# firewall-cmd --permanent --add-service=samba
+success
+[root@server0 ~]# firewall-cmd --reload
+success
+[root@server0 ~]# getsebool -a | grep samba
+samba_create_home_dirs --> off
+samba_domain_controller --> off
+samba_enable_home_dirs --> off
+samba_export_all_ro --> off
+samba_export_all_rw --> off
+samba_load_libgfapi --> off
+samba_portmapper --> off
+samba_run_unconfined --> off
+samba_share_fusefs --> off
+samba_share_nfs --> off
+sanlock_use_samba --> off
+tmpreaper_use_samba --> off
+use_samba_home_dirs --> off
+virt_use_samba --> off
+[root@server0 ~]# setsebool -P samba_export_all_ro=1 samba_export_all_rw=1 samba_share_nfs=1 smbd_anon_write=1
+[root@server0 ~]# getsebool -a | grep sambasamba_create_home_dirs --> off
+samba_domain_controller --> off
+samba_enable_home_dirs --> off
+samba_export_all_ro --> on
+samba_export_all_rw --> on
+samba_load_libgfapi --> off
+samba_portmapper --> off
+samba_run_unconfined --> off
+samba_share_fusefs --> off
+samba_share_nfs --> on
+sanlock_use_samba --> off
+tmpreaper_use_samba --> off
+use_samba_home_dirs --> off
+virt_use_samba --> off
+[root@server0 ~]# getsebool -a | grep smbd
+smbd_anon_write --> on
+[root@server0 ~]# semanage fcontext -a -t samba_share_t "/private/protect(/.*)?"
+[root@server0 ~]# 
+[root@server0 ~]# ls -ldZ /private/protect/
+drwxrwxr-x+ root root unconfined_u:object_r:default_t:s0 /private/protect/
+[root@server0 ~]# restorecon -vvFR /private/protect/
+restorecon reset /private/protect context unconfined_u:object_r:default_t:s0->system_u:object_r:samba_share_t:s0
+[root@server0 ~]# ls -ldZ /private/protect/
+drwxrwxr-x+ root root system_u:object_r:samba_share_t:s0 /private/protect/
+[root@server0 ~]# 
+
+
+
+
+
+[root@server0 ~]# systemctl restart smb nmb
+[root@server0 ~]# systemctl enable smb nmb
+Created symlink from /etc/systemd/system/multi-user.target.wants/smb.service to /usr/lib/systemd/system/smb.service.
+Created symlink from /etc/systemd/system/multi-user.target.wants/nmb.service to /usr/lib/systemd/system/nmb.service.
+[root@server0 ~]# 
+
+
+
+
+
+
+
+
+[root@server0 ~]# ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 1000
+    link/ether 00:0c:29:fe:b6:77 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.131/24 brd 192.168.0.255 scope global dynamic ens33
+       valid_lft 85586sec preferred_lft 85586sec
+    inet6 fe80::87d1:21a4:7630:67cb/64 scope link 
+       valid_lft forever preferred_lft forever
+3: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+       valid_lft forever preferred_lft forever
+4: virbr0-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master virbr0 state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+[root@server0 ~]# 
+[root@server0 ~]# id kushal
+uid=1003(kushal) gid=1004(kushal) groups=1004(kushal)
+[root@server0 ~]# 
+
+
+
+
+
+
+
+
+
+
+
+
+[root@server0 ~]# ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 1000
+    link/ether 00:0c:29:fe:b6:77 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.131/24 brd 192.168.0.255 scope global dynamic ens33
+       valid_lft 84742sec preferred_lft 84742sec
+    inet6 fe80::87d1:21a4:7630:67cb/64 scope link 
+       valid_lft forever preferred_lft forever
+3: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+       valid_lft forever preferred_lft forever
+4: virbr0-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master virbr0 state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+[root@server0 ~]# 
+[root@server0 ~]# nmcli connection down server 
+Connection 'server' successfully deactivated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/7)
+[root@server0 ~]# nmcli connection up server 
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/8)
+[root@server0 ~]# ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 1000
+    link/ether 00:0c:29:fe:b6:77 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.43.63/24 brd 192.168.43.255 scope global dynamic ens33
+       valid_lft 3599sec preferred_lft 3599sec
+    inet6 fe80::87d1:21a4:7630:67cb/64 scope link 
+       valid_lft forever preferred_lft forever
+3: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+       valid_lft forever preferred_lft forever
+4: virbr0-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master virbr0 state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+[root@server0 ~]# vim /etc/samba/smb.conf
+[root@server0 ~]# systemctl restart smb nmb
+[root@server0 ~]# firewall-cmd --reload
+success
+[root@server0 ~]# 
+[root@server0 ~]# ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 1000
+    link/ether 00:0c:29:fe:b6:77 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.43.63/24 brd 192.168.43.255 scope global dynamic ens33
+       valid_lft 3569sec preferred_lft 3569sec
+    inet6 fe80::87d1:21a4:7630:67cb/64 scope link 
+       valid_lft forever preferred_lft forever
+3: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+       valid_lft forever preferred_lft forever
+4: virbr0-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master virbr0 state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+[root@server0 ~]# 
+[root@server0 ~]# ping 192.168.43.34
+PING 192.168.43.34 (192.168.43.34) 56(84) bytes of data.
+64 bytes from 192.168.43.34: icmp_seq=1 ttl=128 time=0.333 ms
+64 bytes from 192.168.43.34: icmp_seq=2 ttl=128 time=0.633 ms
+^C
+--- 192.168.43.34 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1000ms
+rtt min/avg/max/mdev = 0.333/0.483/0.633/0.150 ms
+[root@server0 ~]# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+[root@server0 ~]# ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 1000
+    link/ether 00:0c:29:fe:b6:77 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.43.63/24 brd 192.168.43.255 scope global dynamic ens33
+       valid_lft 3481sec preferred_lft 3481sec
+    inet6 fe80::87d1:21a4:7630:67cb/64 scope link 
+       valid_lft forever preferred_lft forever
+3: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+       valid_lft forever preferred_lft forever
+4: virbr0-nic: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master virbr0 state DOWN qlen 1000
+    link/ether 52:54:00:f1:10:65 brd ff:ff:ff:ff:ff:ff
+[root@server0 ~]# 
+[root@server0 ~]# vim /etc/samba/smb.conf
+[root@server0 ~]# !sy
+systemctl restart smb nmb
+[root@server0 ~]# 
+
+
+
+
+
+
+[root@server0 ~]# cd /mnt/kush
+bash: cd: /mnt/kush: No such file or directory
+[root@server0 ~]# cd /private/protect/
+[root@server0 protect]# ls
+e  fre  gt  jully  kushalsaomta  root  sd  youth
+[root@server0 protect]# l
+bash: l: command not found...
+[root@server0 protect]# ll
+total 0
+drwxr-xr-x. 2 kushal kushal 6 Feb 12 11:07 e
+drwxr-xr-x. 2 kushal kushal 6 Feb 12 11:03 fre
+-rw-r--r--. 1 kushal kushal 0 Feb 12 11:06 gt
+-rw-r--r--. 1 kushal kushal 0 Feb 12 10:57 jully
+drwxr-xr-x. 2 kushal kushal 6 Feb 12 11:14 kushalsaomta
+-rw-r--r--. 1 kushal kushal 0 Feb 12 10:59 root
+drwxr-xr-x. 2 kushal kushal 6 Feb 12 11:07 sd
+-rw-r--r--. 1 kushal kushal 0 Feb 12 11:02 youth
+[root@server0 protect]# man smb.conf
+[root@server0 protect]# 
+
+
+
+[root@server0 protect]# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
